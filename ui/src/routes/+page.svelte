@@ -14,8 +14,28 @@
 	onMount(() => {
 		renderGraph()
 	});
+	function removeElement(id:string) {
+		console.log(`remove ${id}`)
+    var elem = document.getElementById(id);
+		if(!elem){
+			return
+		}
+    return elem.parentNode!.removeChild(elem);
+}
+	let id = 1
+	let el:any = undefined
+	let parent: any = undefined
 	function renderGraph(){
-		const ctx = document.getElementById('myChart');
+		const graphId = `graph-${id}`
+		if(el)
+		{
+			removeElement(graphId)
+			// id++
+		}
+		el = document.createElement("canvas")
+		parent.appendChild(el)
+		el.setAttribute("id", graphId)
+
 		var data: number[] = [];
 		var interest: number[] = [];
 
@@ -33,7 +53,7 @@
 			}
 		}
 
-		graph = new chart(ctx, {
+		new chart(el, {
 			type: 'line',
 			data: {
 				labels: data.map((i, index) => {
@@ -86,13 +106,17 @@
 	<div class="flex flex-col p-4">
 		<div class="flex flex-col mb-5">
 			<p class="my-auto mb-1">starting balance</p>
-			<input type="number" bind:value={startingBalance} class="dark:bg-stone-800" name="" id="" />
+			<input type="number" 
+			bind:value={startingBalance}
+			on:change={renderGraph}
+			 class="dark:bg-stone-800" name="" id="" />
 		</div>
 		<div class="flex flex-col mb-5">
 			<p class="my-auto mb-1">return per year</p>
 			<input
 				type="number"
 				bind:value={returnPerYear}
+				on:change={renderGraph}
 				class="dark:bg-stone-800 mb-5"
 				name=""
 				id=""
@@ -100,6 +124,7 @@
 			<input
 				type="range"
 				bind:value={returnPerYear}
+				on:change={renderGraph}
 				min="0"
 				max="50"
 				class="dark:bg-stone-800"
@@ -112,6 +137,7 @@
 			<input
 				type="number"
 				bind:value={periodsPerYear}
+				on:change={renderGraph}
 				class="dark:bg-stone-800 mb-5"
 				name=""
 				id=""
@@ -122,6 +148,7 @@
 			<input
 				type="number"
 				bind:value={depositsPerMonth}
+				on:change={renderGraph}
 				class="dark:bg-stone-800 mb-5"
 				name=""
 				id=""
@@ -131,7 +158,7 @@
 			<p class="my-auto mb-1">years to grow</p>
 			<input type="number" bind:value={yearsToGrow} on:change={renderGraph} class="dark:bg-stone-800 mb-5" name="" id="" />
 			<input
-				on:change={()=>{}}
+				on:change={renderGraph}
 				type="range"
 				bind:value={yearsToGrow}
 				min="1"
@@ -144,9 +171,8 @@
 	</div>
 
 	<h1 class="text-xl text-center p-2">
-		<div class="flex flex-col items-center justify-center">
+		<div class="flex flex-col items-center justify-center" bind:this={parent}>
 			<h1>Graph</h1>
-			<canvas id="myChart"></canvas>
 		</div>
 	</h1>
 </div>
