@@ -20,6 +20,7 @@
 		"@sveltejs/vite-plugin-svelte": "3.0.0",
 		"@types/luxon": "3.4.2",
 		"autoprefixer": "10.4.19",
+		"carbon-preprocess-svelte": "^0.11.11",
 		"flowbite": "2.3.0",
 		"flowbite-svelte": "0.46.2",
 		"flowbite-svelte-icons": "1.6.1",
@@ -39,6 +40,9 @@
 	"dependencies": {
 		"@melt-ui/svelte": "0.86.2",
 		"@sveltejs/adapter-node": "5.2.0",
-		"financejs": "^4.1.0"
+		"apexcharts": "^5.3.3",
+		"carbon-components-svelte": "^0.89.6",
+		"financejs": "^4.1.0",
+		"svelte-apexcharts": "^1.0.2"
 	}
 }

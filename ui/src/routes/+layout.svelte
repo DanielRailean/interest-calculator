@@ -1,12 +1,8 @@
 <script>
 	import { staticConfig } from '$lib/config';
 	import { page } from '$app/stores';
-	import ConfigLoader from '$lib/components/ConfigLoader.svelte';
-	import Sidebar from '$lib/components/SideBar.svelte';
-	import Login from '$lib/components/LoginRedirect.svelte';
 	import './styles.css';
 	import Toasts from '$lib/components/Toasts.svelte';
-	import Preferences from '$lib/components/Preferences.svelte';
 </script>
 
 <svelte:head>
@@ -14,14 +10,15 @@
 </svelte:head>
 
 <Toasts />
-<div class="flex flex-row min-h-[100vh]">
+<div class="min-h-[100vh]">
 	<main class="w-full h-full {$page.url.pathname.includes('/login') ? 'my-auto' : ''}">
 		<div
-			class="flex flex-col m-8 shadow shadow-stone-300 dark:shadow-zinc-800 bg-white rounded-xl dark:bg-[#1E2021] dark:text-stone-50"
+			class="m-8 shadow shadow-stone-300 dark:shadow-zinc-800 bg-white rounded-xl dark:bg-[#1E2021] dark:text-stone-50"
 		>
 			<slot />
 		</div>
 	</main>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </div>
 
 <style>

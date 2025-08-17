@@ -2,7 +2,7 @@ import type { IKongEntity } from './types';
 
 export const staticConfig = {
 	autoLoginDelayMs: 100,
-	name: 'Banana UI'
+	name: 'Compound interest Calculator'
 };
 export const paginationSizeUi = 20;
 
